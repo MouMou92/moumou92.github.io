@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faire un don - Nom de l’association</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <!-- En-tête -->
+  <header>
+    <div class="container">
+      <img src="assets/images/logo.png" alt="Logo de l'association" class="logo">
+
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="donate.html" class="active">Faire un don</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenu principal -->
+  <main>
+    <section class="donate-intro">
+      <div class="container">
+        <h1>Faire un don</h1>
+        <p>
+          Votre contribution nous aide à poursuivre nos actions au quotidien.  
+          Chaque don, petit ou grand, compte énormément pour soutenir nos projets
+          et venir en aide à ceux qui en ont besoin.
+        </p>
+      </div>
+    </section>
+
+    <section class="donate-options">
+      <div class="container">
+        <h2>Faire un don via PayPal</h2>
+
+        <div class="method">
+          <img src="assets/images/paypal.png" alt="Logo PayPal">
+          <p>Faites un don sécurisé en ligne :</p>
+
+          <!-- Bouton officiel PayPal -->
+          <form action="https://www.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="hosted_button_id" value="HV9NVH3BY486S" />
+            <input type="image"
+                   src="https://www.paypalobjects.com/fr_FR/BE/i/btn/btn_donate_LG.gif"
+                   border="0"
+                   name="submit"
+                   title="PayPal - The safer, easier way to pay online!"
+                   alt="Bouton Faites un don avec PayPal" />
+            <img alt="" border="0"
+                 src="https://www.paypal.com/fr_BE/i/scr/pixel.gif"
+                 width="1" height="1" />
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="donate-thanks">
+      <div class="container">
+        <h2>Merci ❤️</h2>
+        <p>Chaque geste nous permet d’avancer. Ensemble, faisons la différence !</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pied de page -->
+  <footer>
+    <p>&copy; 2025 Association Nom — Tous droits réservés.</p>
+    <p><a href="contact.html">Nous contacter</a></p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
