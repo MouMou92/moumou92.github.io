@@ -19,6 +19,12 @@ header .container {
   margin: auto;
 }
 
+.logo {
+  height: 60px;
+  width: auto;
+  border-radius: 6px;
+}
+
 nav ul {
   list-style: none;
   display: flex;
