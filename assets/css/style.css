@@ -414,3 +414,6 @@ nav ul li a:hover:not(.active) {
   color: #ecf0f1;
 }
 
+nav ul {
+  will-change: opacity, transform;
+}
