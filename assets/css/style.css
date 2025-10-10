@@ -401,3 +401,16 @@ footer {
   color: #2c3e50;
   margin-bottom: 10px;
 }
+
+/* ===== Lien actif du menu ===== */
+nav ul li a.active {
+  color: #f1c40f; /* jaune doré pour mettre en valeur */
+  font-weight: bold;
+  border-bottom: 2px solid #f1c40f;
+}
+
+/* Au survol, on garde une teinte légèrement différente */
+nav ul li a:hover:not(.active) {
+  color: #ecf0f1;
+}
+
