@@ -224,20 +224,30 @@ footer {
 /* --- Version mobile (moins de 768px) --- */
 @media (max-width: 768px) {
   nav ul {
-    display: none;
+    display: flex;
     flex-direction: column;
-    background: #2c3e50;         /* fond opaque au lieu de semi-transparent */
+    background: #2c3e50;
     position: absolute;
-    top: 60px;                   /* juste sous le header */
+    top: 60px;
     left: 0;
     width: 100%;
     text-align: center;
-    padding: 20px 0;
-    z-index: 1000;               /* passe au-dessus du reste */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    /* Animation */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
   }
 
   nav ul.active {
-    display: flex;               /* visible quand on clique sur le burger */
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   nav ul li a {
@@ -245,6 +255,7 @@ footer {
     text-decoration: none;
     display: block;
     padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   nav ul li a:hover {
@@ -259,6 +270,7 @@ footer {
     position: relative;
   }
 }
+
 
 
 @media (max-width: 600px) {
