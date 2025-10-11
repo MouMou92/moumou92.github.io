@@ -3,7 +3,8 @@ backend:
   repo: MouMou92/moumou92.github.io
   branch: main
   base_url: https://awalnovember.netlify.app
-  auth_endpoint: /api/auth
+  auth_endpoint: /.netlify/functions/auth
+
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
