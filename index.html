@@ -40,26 +40,37 @@
       </div>
     </section>
 
-    <section class="news">
-      <h2>Nos dernières actualités</h2>
-      <div class="cards">
-        <div class="card">
-          <img src="assets/images/actu1.jpg" alt="Actualité 1">
-          <h3>Distribution solidaire</h3>
-          <p>Retour sur notre dernière action de terrain...</p>
-        </div>
-        <div class="card">
-          <img src="assets/images/actu2.jpg" alt="Actualité 2">
-          <h3>Nouvelle campagne</h3>
-          <p>Découvrez comment participer à notre prochaine collecte.</p>
-        </div>
-        <div class="card">
-          <img src="assets/images/actu3.jpg" alt="Actualité 3">
-          <h3>Recrutement de bénévoles</h3>
-          <p>Nous recherchons des volontaires pour nos activités à venir.</p>
-        </div>
-      </div>
-    </section>
+<section class="news">
+  <h2>Nos dernières actualités</h2>
+  <div class="cards" id="news-cards"></div>
+  <div style="text-align:center; margin-top:20px;">
+    <a href="actualite.html" class="btn">Voir toutes les actualités</a>
+  </div>
+</section>
+
+<script>
+async function loadNews(limit = 3) {
+  const container = document.getElementById("news-cards");
+  const req = await fetch("content/news/index.json?_=" + Date.now());
+  const newsList = await req.json();
+
+  const latest = newsList.slice(0, limit);
+  latest.forEach(news => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${news.image}" alt="${news.title}">
+      <h3>${news.title}</h3>
+      <p>${news.excerpt}</p>
+      <a href="actualite.html#${news.slug}" class="btn">Lire</a>
+    `;
+    container.appendChild(card);
+  });
+}
+
+loadNews();
+</script>
+
   </main>
 
   <!-- Pied de page -->
