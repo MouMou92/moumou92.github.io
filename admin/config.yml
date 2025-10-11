@@ -2,7 +2,7 @@ backend:
   name: github
   repo: MouMou92/moumou92.github.io
   branch: main
-  base_url: https://awalnovember.netlify.app
+  base_url: https://awalnovembre.netlify.app
   auth_endpoint: /api/auth
 
 
