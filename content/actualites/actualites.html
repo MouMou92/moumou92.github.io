@@ -6,6 +6,19 @@
   <title>Actualités - ASBL Awal Novembre</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
   <script src="../../assets/js/script.js" defer></script>
+
+  <style>
+    /* Effet de halo léger sur l'actualité ciblée */
+    .highlight {
+      animation: highlightFade 2s ease-in-out;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+      border-radius: 10px;
+    }
+    @keyframes highlightFade {
+      from { background-color: rgba(255, 204, 0, 0.2); }
+      to { background-color: transparent; box-shadow: none; }
+    }
+  </style>
 </head>
 
 <body>
@@ -13,9 +26,7 @@
   <header>
     <div class="container">
       <img src="../../assets/images/logo.png" class="logo" alt="Logo Awal Novembre">
-
       <div class="menu-toggle" id="menu-toggle">☰</div>
-
       <nav id="nav-menu">
         <ul>
           <li><a href="../../index.html">Accueil</a></li>
@@ -42,24 +53,23 @@
     <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
   </footer>
 
-  <!-- ===== SCRIPT POUR CHARGER LES ACTUALITÉS ===== -->
+  <!-- ===== SCRIPT CHARGEMENT DES ACTUALITÉS ===== -->
   <script>
   async function loadAllNews() {
     try {
       const req = await fetch("news.json?_=" + Date.now());
       const jsonData = await req.json();
       const newsList = jsonData.items;
-
-      // Trie les actualités de la plus récente à la plus ancienne
       newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       const container = document.getElementById("news-list");
       container.innerHTML = "";
 
-      // Génération du contenu HTML pour chaque actualité
       newsList.forEach(news => {
+        const id = news.title.toLowerCase().replace(/\s+/g, "-");
         const div = document.createElement("div");
         div.className = "actu-block";
+        div.id = id;
         div.innerHTML = `
           <img src="../../${news.image}" alt="${news.title}">
           <div class="actu-content">
@@ -73,6 +83,18 @@
         `;
         container.appendChild(div);
       });
+
+      // Si une ancre (#id) est présente dans l'URL, on met un effet visuel dessus
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          target.classList.add("highlight");
+          setTimeout(() => target.classList.remove("highlight"), 2000);
+        }
+      }
+
     } catch (error) {
       console.error("Erreur lors du chargement des actualités :", error);
       document.getElementById("news-list").innerHTML =
@@ -83,11 +105,10 @@
   loadAllNews();
   </script>
 
-  <!-- ===== MENU BURGER SCRIPT ===== -->
+  <!-- ===== MENU BURGER ===== -->
   <script>
   const menuToggle = document.getElementById("menu-toggle");
   const navMenu = document.getElementById("nav-menu");
-
   menuToggle.addEventListener("click", () => {
     navMenu.querySelector("ul").classList.toggle("active");
   });

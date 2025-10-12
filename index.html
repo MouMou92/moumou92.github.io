@@ -9,13 +9,11 @@
 </head>
 
 <body>
-  <!-- En-tête du site -->
+  <!-- ===== HEADER ===== -->
   <header>
     <div class="container">
       <img src="assets/images/logo.png" alt="Logo de l'association" class="logo">
-
       <div class="menu-toggle" id="menu-toggle">☰</div>
-
       <nav id="nav-menu">
         <ul>
           <li><a href="index.html" class="active">Accueil</a></li>
@@ -29,7 +27,7 @@
     </div>
   </header>
 
-  <!-- Section principale -->
+  <!-- ===== CONTENU PRINCIPAL ===== -->
   <main>
     <section class="hero">
       <div class="hero-content">
@@ -38,7 +36,7 @@
       </div>
     </section>
 
-    <!-- Section actualités -->
+    <!-- ===== ACTUALITÉS ===== -->
     <section class="news">
       <h2>Nos dernières actualités</h2>
       <div class="cards" id="news-cards"></div>
@@ -48,13 +46,12 @@
     </section>
   </main>
 
-  <!-- Pied de page -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
-    <p><a href="contact.html">Nous contacter</a></p>
   </footer>
 
-  <!-- Script actualités -->
+  <!-- ===== SCRIPT ACTUALITÉS ===== -->
   <script>
   async function loadNews(limit = 3) {
     try {
@@ -62,22 +59,22 @@
       const jsonData = await req.json();
       const newsList = jsonData.items;
 
-      // Trier par date décroissante
+      // Trie les actualités de la plus récente à la plus ancienne
       newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      // Prendre les 3 plus récentes
       const latest = newsList.slice(0, limit);
       const container = document.getElementById("news-cards");
       container.innerHTML = "";
 
       latest.forEach(news => {
+        const id = news.title.toLowerCase().replace(/\s+/g, "-");
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
           <img src="${news.image}" alt="${news.title}">
           <h3>${news.title}</h3>
           <p>${news.excerpt}</p>
-          <a href="content/actualites/actualites.html" class="btn">Lire</a>
+          <a href="content/actualites/actualites.html#${id}" class="btn">Lire</a>
         `;
         container.appendChild(card);
       });
@@ -89,6 +86,13 @@
   loadNews();
   </script>
 
-  <script src="assets/js/script.js"></script>
+  <!-- ===== MENU BURGER ===== -->
+  <script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const navMenu = document.getElementById("nav-menu");
+  menuToggle.addEventListener("click", () => {
+    navMenu.querySelector("ul").classList.toggle("active");
+  });
+  </script>
 </body>
 </html>
