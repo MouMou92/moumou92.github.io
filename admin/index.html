@@ -4,11 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Administration — Awal Novembre</title>
+
+    <!-- Chargement de Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        padding: 20px;
+      }
+      .loading {
+        text-align: center;
+        margin-top: 50px;
+      }
+    </style>
   </head>
   <body>
-	<script>
-	  CMS.init({ config_path: "config.json" });
-	</script>
+    <div class="loading">
+      <h2>Chargement du panneau d’administration...</h2>
+    </div>
+
+    <script>
+      // On attend que la bibliothèque soit bien chargée
+      window.addEventListener("DOMContentLoaded", function () {
+        // On vérifie que CMS est bien présent
+        if (typeof CMS !== "undefined") {
+          CMS.init({
+            config_path: "https://moumou92.github.io/admin/config.json",
+          });
+        } else {
+          document.body.innerHTML =
+            "<p style='color:red'>Erreur : Decap CMS ne s’est pas chargé.</p>";
+        }
+      });
+    </script>
   </body>
 </html>
