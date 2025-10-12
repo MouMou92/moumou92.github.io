@@ -6,6 +6,9 @@
     <meta http-equiv="Cache-Control" content="no-store" />
     <title>Administration — Awal Novembre</title>
 
+    <!-- Version stable et autonome -->
+    <script src="../assets/js/netlify-cms.js" defer></script>
+
     <style>
       body {font-family: Arial, sans-serif; color:#333; padding:20px;}
       #nc-root {height:100vh;}
@@ -18,17 +21,13 @@
     </div>
     <div id="nc-root"></div>
 
-    <!-- Charger la lib APRÈS le DOM -->
-    <script src="../assets/js/decap-cms.js" defer></script>
-
     <script>
       window.addEventListener("load", function () {
-        // attendre un court instant pour s'assurer que tout est prêt
         setTimeout(() => {
           if (window.CMS && typeof CMS.init === "function") {
             document.getElementById("loader").style.display = "none";
             CMS.init({
-              config_path: "https://moumou92.github.io/admin/config.json",
+              config_path: "https://moumou92.github.io/admin/config.json"
             });
           } else {
             document.body.innerHTML =
