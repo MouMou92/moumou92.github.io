@@ -1,32 +1,32 @@
 {
   "items": [
     {
-      "title": "Célébration de Yennayer",
-      "date": "2025-01-12",
-      "image": "assets/images/uploads/yennayer.jpg",
-      "excerpt": "Retour sur notre belle célébration de Yennayer à Mons !",
-      "body": "🌿 Une journée pleine de partage et de traditions amazighes. Merci à tous les participants et bénévoles pour cette magnifique ambiance fraternelle."
+      "title": "Mini tournoi de pétanque",
+      "date": "2025-06-26",
+      "image": "assets/images/uploads/Pétanque.jpg",
+      "excerpt": "",
+      "body": ""
     },
     {
-      "title": "Fête nationale",
+      "title": "Randonée",
+      "date": "2025-07-14",
+      "image": "",
+      "excerpt": "",
+      "body": "Bonjour à tous, pour les amateurs de la marche et de la randonnée, ce mardi, nous allons faire une sortie en groupe au bord du canal vers Saint-Ghislain, départ à 18h00 du Grand Large. Bienvenue à tout le monde."
+    },
+    {
+      "title": "Invitation consulat",
+      "date": "2025-07-18",
+      "image": "assets/images/uploads/Consulat.jpg",
+      "excerpt": "",
+      "body": "Aujourd’hui, j’ai eu l’honneur d’être invité par le consul général d’Algérie pour célébrer le 63e anniversaire de l’indépendance de notre pays. À cette occasion, j’ai reçu un trophée d’encouragement et de remerciements pour le travail accompli au sein de notre association, Awal Novembre.\nJe tiens à remercier chaleureusement tous nos adhérents et notre communauté pour leur soutien indéfectible. C’est grâce à vous que nous avons la force de continuer à avancer et de travailler ensemble.\nNotre objectif est de rester unis et de poursuivre nos efforts pour un avenir meilleur. Ensemble, tout est possible !\nMerci à tous !"
+    },
+    {
+      "title": "Fête national",
       "date": "2025-07-21",
-      "image": "assets/images/uploads/01.jpg",
-      "excerpt": "Joyeuse fête nationale à tous !",
-      "body": "🎉 En ce 21 juillet, célébrons ensemble notre belle Belgique, riche en diversité, culture et histoire. Vive la Belgique ! 🎈🥳"
-    },
-    {
-      "title": "Rencontre des familles Awal Novembre",
-      "date": "2025-08-03",
-      "image": "assets/images/uploads/familles.jpg",
-      "excerpt": "Un moment de convivialité et de partage entre familles algériennes de Wallonie.",
-      "body": "🤝 Merci à tous les participants pour cette belle rencontre intergénérationnelle autour d’un repas et d’activités culturelles."
-    },
-    {
-      "title": "Journée caritative",
-      "date": "2025-09-15",
-      "image": "assets/images/uploads/solidarite.jpg",
-      "excerpt": "Collecte de vêtements et denrées pour les plus démunis.",
-      "body": "💚 Merci aux bénévoles et donateurs ! Plus de 200kg de vêtements redistribués dans la région de Mons."
+      "image": "assets/images/uploads/Fête nationale.jpg",
+      "excerpt": "Joyeuse fêtes",
+      "body": "Joyeuse fête nationale à tous ! En ce 21 juillet, célébrons ensemble notre belle Belgique, riche en diversité, en culture et en histoire. Que cette journée soit remplie de fierté, de joie et de moments inoubliables avec vos proches. Vive la Belgique ! "
     }
   ]
 }
