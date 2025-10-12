@@ -47,10 +47,11 @@ nav a {
 /* ===== HERO ===== */
 .hero {
   text-align: center;
-  padding: 80px 20px;
-  background: url("../images/cover.jpg") center/cover no-repeat;
+  padding: 120px 20px; /* un peu plus haut, plus visible */
+  background: url("../images/cover.jpg") center 45% / cover no-repeat;
   color: white;
 }
+
 
 .hero h1 span {
   color: #ffcc00;
