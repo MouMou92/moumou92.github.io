@@ -10,28 +10,31 @@
     <script src="../assets/js/decap-cms.js"></script>
 
     <style>
-      body {font-family: Arial, sans-serif; color:#333; padding:20px;}
-      .loading {text-align:center; margin-top:50px;}
+      body { font-family: Arial, sans-serif; color:#333; padding:20px; }
+      #nc-root { height: 100vh; }
+      .loading { text-align:center; margin-top:50px; }
     </style>
   </head>
   <body>
-    <div class="loading">
+    <div class="loading" id="loader">
       <h2>Chargement du panneau d’administration...</h2>
     </div>
 
+    <div id="nc-root"></div>
+
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-          if (typeof CMS !== "undefined") {
-            CMS.init({
-              config_path: "https://moumou92.github.io/admin/config.json"
-            });
-          } else {
-            document.body.innerHTML =
-              "<p style='color:red'>Erreur : le CMS ne s’est pas chargé.</p>";
-          }
-        }, 500);
-      });
+      function startCMS() {
+        if (typeof CMS !== "undefined") {
+          document.getElementById("loader").style.display = "none";
+          CMS.init({
+            config_path: "https://moumou92.github.io/admin/config.json",
+          });
+        } else {
+          setTimeout(startCMS, 200);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", startCMS);
     </script>
   </body>
 </html>
