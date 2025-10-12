@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actualités - ASBL Awal Novembre</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/script.js" defer></script>
   <style>
     html { scroll-behavior: smooth; }
     /* Effet visuel sur l’actualité ciblée */
@@ -47,13 +48,14 @@
     </section>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
   </footer>
 
-  <!-- ===== SCRIPT ===== -->
+  <!-- ===== SCRIPT PRINCIPAL ===== -->
   <script>
-  // Fonction pour uniformiser les IDs
+  // Fonction pour uniformiser les IDs (accents, caractères spéciaux, etc.)
   function slugify(text) {
     return text
       .toString()
@@ -67,6 +69,7 @@
 
   async function loadAllNews() {
     try {
+      // Chemin absolu depuis la racine du site
       const req = await fetch("/content/actualites/news.json?_=" + Date.now());
       const jsonData = await req.json();
       const newsList = jsonData.items;
@@ -114,20 +117,5 @@
 
   loadAllNews();
   </script>
-<!-- ===== MENU BURGER ===== -->
-	<script>
-	document.addEventListener("DOMContentLoaded", () => {
-	  const menuToggle = document.getElementById("menu-toggle");
-	  const navMenu = document.getElementById("nav-menu");
-	  const navList = navMenu ? navMenu.querySelector("ul") : null;
-
-	  if (menuToggle && navList) {
-		menuToggle.addEventListener("click", () => {
-		  navList.classList.toggle("active");
-		});
-	  }
-	});
-	</script>
-
 </body>
 </html>
