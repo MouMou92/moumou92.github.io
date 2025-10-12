@@ -1,11 +1,32 @@
 {
   "items": [
     {
+      "title": "Célébration de Yennayer",
+      "date": "2025-01-12",
+      "image": "assets/images/uploads/yennayer.jpg",
+      "excerpt": "Retour sur notre belle célébration de Yennayer à Mons !",
+      "body": "🌿 Une journée pleine de partage et de traditions amazighes. Merci à tous les participants et bénévoles pour cette magnifique ambiance fraternelle."
+    },
+    {
       "title": "Fête nationale",
       "date": "2025-07-21",
       "image": "assets/images/uploads/01.jpg",
-      "excerpt": "Joyeuse fête",
-      "body": "🎉 Joyeuse fête nationale à tous ! En ce 21 juillet, célébrons ensemble notre belle Belgique, riche en diversité, en culture et en histoire. Que cette journée soit remplie de fierté, de joie et de moments inoubliables avec vos proches. Vive la Belgique ! 🎈🥳 "
+      "excerpt": "Joyeuse fête nationale à tous !",
+      "body": "🎉 En ce 21 juillet, célébrons ensemble notre belle Belgique, riche en diversité, culture et histoire. Vive la Belgique ! 🎈🥳"
+    },
+    {
+      "title": "Rencontre des familles Awal Novembre",
+      "date": "2025-08-03",
+      "image": "assets/images/uploads/familles.jpg",
+      "excerpt": "Un moment de convivialité et de partage entre familles algériennes de Wallonie.",
+      "body": "🤝 Merci à tous les participants pour cette belle rencontre intergénérationnelle autour d’un repas et d’activités culturelles."
+    },
+    {
+      "title": "Journée caritative",
+      "date": "2025-09-15",
+      "image": "assets/images/uploads/solidarite.jpg",
+      "excerpt": "Collecte de vêtements et denrées pour les plus démunis.",
+      "body": "💚 Merci aux bénévoles et donateurs ! Plus de 200kg de vêtements redistribués dans la région de Mons."
     }
   ]
 }
