@@ -103,11 +103,17 @@
 
   <!-- ===== MENU BURGER ===== -->
   <script>
-  const menuToggle = document.getElementById("menu-toggle");
-  const navMenu = document.getElementById("nav-menu");
-  menuToggle.addEventListener("click", () => {
-    navMenu.querySelector("ul").classList.toggle("active");
-  });
+	document.addEventListener("DOMContentLoaded", () => {
+	  const menuToggle = document.getElementById("menu-toggle");
+	  const navMenu = document.getElementById("nav-menu");
+	  const navList = navMenu ? navMenu.querySelector("ul") : null;
+
+	  if (menuToggle && navList) {
+		menuToggle.addEventListener("click", () => {
+		  navList.classList.toggle("active");
+		});
+	  }
+	});
   </script>
 </body>
 </html>

@@ -114,13 +114,20 @@
   }
 
   loadAllNews();
+  </script>
+  <!-- ===== MENU BURGER ===== -->
+  <script>
+	document.addEventListener("DOMContentLoaded", () => {
+	  const menuToggle = document.getElementById("menu-toggle");
+	  const navMenu = document.getElementById("nav-menu");
+	  const navList = navMenu ? navMenu.querySelector("ul") : null;
 
-  // ===== MENU BURGER =====
-  const menuToggle = document.getElementById("menu-toggle");
-  const navMenu = document.getElementById("nav-menu");
-  menuToggle.addEventListener("click", () => {
-    navMenu.querySelector("ul").classList.toggle("active");
-  });
+	  if (menuToggle && navList) {
+		menuToggle.addEventListener("click", () => {
+		  navList.classList.toggle("active");
+		});
+	  }
+	});
   </script>
 </body>
 </html>
