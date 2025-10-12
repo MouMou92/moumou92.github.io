@@ -25,19 +25,20 @@
       <h2>Chargement du panneau d’administration...</h2>
     </div>
 
-    <script>
-      // On attend que la bibliothèque soit bien chargée
-      window.addEventListener("DOMContentLoaded", function () {
-        // On vérifie que CMS est bien présent
-        if (typeof CMS !== "undefined") {
-          CMS.init({
-            config_path: "https://moumou92.github.io/admin/config.json",
-          });
-        } else {
-          document.body.innerHTML =
-            "<p style='color:red'>Erreur : Decap CMS ne s’est pas chargé.</p>";
-        }
-      });
-    </script>
+	<script>
+	  function initDecap() {
+		if (typeof CMS !== "undefined" && typeof CMS.init === "function") {
+		  CMS.init({
+			config_path: "https://moumou92.github.io/admin/config.json",
+		  });
+		} else {
+		  // On réessaie toutes les 200ms jusqu'à ce que Decap soit prêt
+		  setTimeout(initDecap, 200);
+		}
+	  }
+
+	  document.addEventListener("DOMContentLoaded", initDecap);
+	</script>
+
   </body>
 </html>
