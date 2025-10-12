@@ -304,20 +304,36 @@ nav ul li a:hover:not(.active) {
   color: #ecf0f1;
 }
 
-/* ===== PAGE ACTUALITÉS COMPLÈTE ===== */
+/* ===== PAGE ACTUALITÉS - STYLE MAGAZINE ===== */
 .news-page {
-  padding: 40px 20px;
-  background: #f4f6f8; /* couleur douce du fond global */
+  padding: 60px 20px;
+  background: #f4f6f8;
+}
+
+.news-page h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 50px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
 .news-list .actu-block {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0; /* pas de carte, juste les éléments */
-  background: transparent; /* suppression du fond blanc */
-  box-shadow: none; /* suppression de l’ombre */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* fine séparation entre actus */
-  padding-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: transparent;
 }
 
 .news-list .actu-block:last-child {
@@ -325,26 +341,30 @@ nav ul li a:hover:not(.active) {
 }
 
 .news-list img {
-  width: 100%;
-  max-height: 400px;
-  object-fit: contain;
+  flex: 1 1 45%;
+  max-width: 45%;
+  height: auto;
   border-radius: 10px;
-  margin-bottom: 10px;
-  background: transparent; /* plus de fond blanc */
+  object-fit: contain;
+  background: transparent;
+}
+
+.news-list .actu-content {
+  flex: 1 1 50%;
+  padding: 0 25px;
 }
 
 .news-list h2 {
-  color: #2c3e50;
   font-size: 24px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  color: #2c3e50;
+  margin: 10px 0;
 }
 
 .news-list p {
   font-size: 15px;
   line-height: 1.6;
-  margin-bottom: 8px;
   color: #333;
+  margin-bottom: 10px;
 }
 
 .news-list .actu-body {
@@ -354,10 +374,9 @@ nav ul li a:hover:not(.active) {
   margin-top: 10px;
 }
 
-.news-list .actu-block {
-  margin: 40px 10px;
+.news-list .actu-block:nth-child(even) {
+  flex-direction: row-reverse;
 }
-
 
 /* ===== MENU BURGER ===== */
 .menu-toggle {
@@ -415,6 +434,20 @@ nav ul li a:hover:not(.active) {
 
   .container {
     position: relative;
+  }
+
+  .news-list .actu-block {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .news-list img {
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .news-list .actu-content {
+    padding: 0;
   }
 }
 
