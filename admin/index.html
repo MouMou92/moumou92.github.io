@@ -6,19 +6,12 @@
     <meta http-equiv="Cache-Control" content="no-store" />
     <title>Administration — Awal Novembre</title>
 
-    <!-- Build officiel complet Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@3.0.15/dist/decap-cms.js"></script>
+    <!-- Version locale du CMS -->
+    <script src="../assets/js/decap-cms.js"></script>
 
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        color: #333;
-        padding: 20px;
-      }
-      .loading {
-        text-align: center;
-        margin-top: 50px;
-      }
+      body {font-family: Arial, sans-serif; color:#333; padding:20px;}
+      .loading {text-align:center; margin-top:50px;}
     </style>
   </head>
   <body>
@@ -27,12 +20,11 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Petit délai pour s'assurer que la lib est bien prête
-        setTimeout(function () {
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
           if (typeof CMS !== "undefined") {
             CMS.init({
-              config_path: "https://moumou92.github.io/admin/config.json",
+              config_path: "https://moumou92.github.io/admin/config.json"
             });
           } else {
             document.body.innerHTML =
