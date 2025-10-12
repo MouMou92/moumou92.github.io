@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Administration — Awal Novembre</title>
 
-    <!-- Version stable 2.15.72 -->
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@2.15.72/dist/decap-cms.js"></script>
+    <!-- Chargement de Decap CMS -->
+	<script src="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
     <style>
       body {
@@ -25,17 +25,20 @@
       <h2>Chargement du panneau d’administration...</h2>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        if (typeof CMS !== "undefined") {
-          CMS.init({
-            config_path: "https://moumou92.github.io/admin/config.json",
-          });
-        } else {
-          document.body.innerHTML =
-            "<p style='color:red'>Erreur : Decap CMS ne s’est pas chargé.</p>";
-        }
-      });
-    </script>
+	<script>
+	  function initDecap() {
+		if (typeof CMS !== "undefined" && typeof CMS.init === "function") {
+		  CMS.init({
+			config_path: "https://moumou92.github.io/admin/config.json",
+		  });
+		} else {
+		  // On réessaie toutes les 200ms jusqu'à ce que Decap soit prêt
+		  setTimeout(initDecap, 200);
+		}
+	  }
+
+	  document.addEventListener("DOMContentLoaded", initDecap);
+	</script>
+
   </body>
 </html>
