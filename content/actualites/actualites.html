@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actualités - ASBL Awal Novembre</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/script.js"></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
 
   <script>
   async function loadAllNews() {
-    const req = await fetch("content/news/index.json?_=" + Date.now());
+    const req = await fetch("content/actualites/index.json?_=" + Date.now());
     const newsList = await req.json();
 
     const container = document.getElementById("news-list");
