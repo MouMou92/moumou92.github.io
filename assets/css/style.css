@@ -5,6 +5,7 @@ body {
   background: #f4f6f8;
 }
 
+/* ===== HEADER ===== */
 header {
   background: #2c3e50;
   color: white;
@@ -38,6 +39,7 @@ nav a {
   font-weight: 500;
 }
 
+/* ===== HERO ===== */
 .hero {
   text-align: center;
   padding: 80px 20px;
@@ -59,6 +61,7 @@ nav a {
   font-weight: bold;
 }
 
+/* ===== SECTION ACTUALITÉS (ACCUEIL) ===== */
 .news {
   padding: 40px 20px;
   background: white;
@@ -75,8 +78,17 @@ nav a {
   background: #f2f2f2;
   border-radius: 10px;
   overflow: hidden;
-  max-width: 300px;
+  width: 300px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
 }
 
 .card img {
@@ -85,6 +97,21 @@ nav a {
   object-fit: cover;
 }
 
+.card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+  color: #2c3e50;
+}
+
+.card p {
+  font-size: 14px;
+  flex-grow: 1;
+  padding: 0 10px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* ===== FOOTER ===== */
 footer {
   text-align: center;
   background: #2c3e50;
@@ -93,7 +120,7 @@ footer {
   margin-top: 40px;
 }
 
-/*====== ABOUT========*/
+/* ===== PAGE ABOUT ===== */
 .about-intro, .mission, .team {
   padding: 60px 20px;
   text-align: center;
@@ -134,7 +161,7 @@ footer {
   color: #2c3e50;
 }
 
-/* ===== Galerie ===== */
+/* ===== GALERIE ===== */
 .gallery-header {
   text-align: center;
   padding: 60px 20px 30px;
@@ -173,7 +200,7 @@ footer {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* ===== Page DONATE ===== */
+/* ===== PAGE DONATE ===== */
 .donate-intro, .donate-options, .donate-thanks {
   padding: 60px 20px;
   text-align: center;
@@ -186,114 +213,6 @@ footer {
   justify-content: center;
   gap: 30px;
   margin-top: 30px;
-}
-
-.method {
-  background: #f4f4f4;
-  border-radius: 10px;
-  padding: 20px;
-  width: 300px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.method img {
-  width: 120px;
-  margin-bottom: 15px;
-}
-
-.method p {
-  margin-bottom: 15px;
-}
-
-@media (max-width: 768px) {
-  .donation-methods {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-
-/* ===== Menu mobile ===== */
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: white;
-}
-
-/* --- Version mobile (moins de 768px) --- */
-@media (max-width: 768px) {
-  nav ul {
-    display: flex;
-    flex-direction: column;
-    background: #2c3e50;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-
-    /* Animation */
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-    transition: all 0.3s ease-in-out;
-    z-index: 1000;
-  }
-
-  nav ul.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  nav ul li a:hover {
-    background: #1a252f;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .container {
-    position: relative;
-  }
-}
-
-
-
-@media (max-width: 600px) {
-  .gallery-container img {
-    height: 180px;
-  }
-}
-
-.method form {
-  display: flex;
-  justify-content: center;
-}
-
-.method img {
-  width: 120px;
-  margin-bottom: 15px;
-}
-
-/* Centrer le bloc PayPal et le texte */
-.donate-options {
-  text-align: center;
-  padding: 60px 20px;
-  background: #ffffff;
 }
 
 .method {
@@ -311,36 +230,7 @@ footer {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Centrer le formulaire PayPal */
-.method form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* Centrer et limiter la taille du logo */
-.method img {
-  display: block;
-  margin: 0 auto 15px;
-  width: 100px;
-  height: auto;
-}
-
-/* Espacement harmonieux pour les titres et textes */
-.donate-options h2 {
-  margin-bottom: 20px;
-  color: #2c3e50;
-}
-
-.donate-options p {
-  margin-bottom: 20px;
-  color: #444;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* ===== Page CONTACT ===== */
+/* ===== PAGE CONTACT ===== */
 .contact-header {
   text-align: center;
   padding: 60px 20px 30px;
@@ -402,14 +292,13 @@ footer {
   margin-bottom: 10px;
 }
 
-/* ===== Lien actif du menu ===== */
+/* ===== LIEN ACTIF ===== */
 nav ul li a.active {
-  color: #f1c40f; /* jaune doré pour mettre en valeur */
+  color: #f1c40f;
   font-weight: bold;
   border-bottom: 2px solid #f1c40f;
 }
 
-/* Au survol, on garde une teinte légèrement différente */
 nav ul li a:hover:not(.active) {
   color: #ecf0f1;
 }
@@ -418,6 +307,7 @@ nav ul {
   will-change: opacity, transform;
 }
 
+/* ===== PAGE ACTUALITÉS COMPLÈTE ===== */
 .news-page {
   padding: 40px 20px;
   background: #fff;
@@ -425,8 +315,8 @@ nav ul {
 
 .news-list .actu-block {
   max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
+  margin: 25px auto;
+  padding: 15px;
   background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -434,11 +324,80 @@ nav ul {
 
 .news-list img {
   width: 100%;
+  height: 250px;
+  object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .news-list h2 {
   color: #2c3e50;
-  margin-bottom: 10px;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+/* ===== MENU BURGER ===== */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    background: #2c3e50;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 70%;
+    text-align: left;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+
+    opacity: 0;
+    transform: translateX(100%);
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  nav ul.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  nav ul li a {
+    color: white;
+    display: block;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  nav ul li a:hover {
+    background: #1a252f;
+  }
+
+  .container {
+    position: relative;
+  }
+}
+
+/* PETITS ÉCRANS */
+@media (max-width: 600px) {
+  .gallery-container img {
+    height: 180px;
+  }
 }
