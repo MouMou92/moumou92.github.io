@@ -6,6 +6,9 @@
   <title>Accueil - ASBL Awal Novembre</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
 </head>
 
 <body>
@@ -53,13 +56,25 @@
 
   <!-- ===== SCRIPT ACTUALITÉS ===== -->
   <script>
+  // Fonction pour créer un identifiant compatible avec accents et caractères spéciaux
+  function slugify(text) {
+    return text
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9\s-]/g, "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-");
+  }
+
   async function loadNews(limit = 3) {
     try {
       const req = await fetch("content/actualites/news.json?_=" + Date.now());
       const jsonData = await req.json();
       const newsList = jsonData.items;
 
-      // Trie les actualités de la plus récente à la plus ancienne
+      // Trie du plus récent au plus ancien
       newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       const latest = newsList.slice(0, limit);
@@ -67,7 +82,7 @@
       container.innerHTML = "";
 
       latest.forEach(news => {
-        const id = news.title.toLowerCase().replace(/\s+/g, "-");
+        const id = slugify(news.title);
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
