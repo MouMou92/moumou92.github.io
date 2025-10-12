@@ -1,40 +1,94 @@
-<section class="news">
-  <h2>Nos dernières actualités</h2>
-  <div class="cards" id="news-cards"></div>
-  <div style="text-align:center; margin-top:20px;">
-    <a href="content/actualites/actualites.html" class="btn">Voir toutes les actualités</a>
-  </div>
-</section>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - ASBL Awal Novembre</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
 
-<script>
-async function loadNews(limit = 3) {
-  try {
-    const req = await fetch("content/actualites/news.json?_=" + Date.now());
-    const jsonData = await req.json();
-    const newsList = jsonData.items;
+<body>
+  <!-- En-tête du site -->
+  <header>
+    <div class="container">
+      <img src="assets/images/logo.png" alt="Logo de l'association" class="logo">
 
-    // Trier par date décroissante
-    newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
+      <div class="menu-toggle" id="menu-toggle">☰</div>
 
-    const latest = newsList.slice(0, limit);
-    const container = document.getElementById("news-cards");
-    container.innerHTML = "";
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="index.html" class="active">Accueil</a></li>
+          <li><a href="content/actualites/actualites.html">Actualités</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="donate.html">Faire un don</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    latest.forEach(news => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <img src="${news.image}" alt="${news.title}">
-        <h3>${news.title}</h3>
-        <p>${news.excerpt}</p>
-        <a href="content/actualites/actualites.html" class="btn">Lire</a>
-      `;
-      container.appendChild(card);
-    });
-  } catch (error) {
-    console.error("Erreur lors du chargement des actualités :", error);
+  <!-- Section principale -->
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1 style="color:black;">ASBL Awal Novembre</h1>
+        <a href="about.html" class="btn">En savoir plus</a>
+      </div>
+    </section>
+
+    <!-- Section actualités -->
+    <section class="news">
+      <h2>Nos dernières actualités</h2>
+      <div class="cards" id="news-cards"></div>
+      <div style="text-align:center; margin-top:20px;">
+        <a href="content/actualites/actualites.html" class="btn">Voir toutes les actualités</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pied de page -->
+  <footer>
+    <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
+    <p><a href="contact.html">Nous contacter</a></p>
+  </footer>
+
+  <!-- Script actualités -->
+  <script>
+  async function loadNews(limit = 3) {
+    try {
+      const req = await fetch("content/actualites/news.json?_=" + Date.now());
+      const jsonData = await req.json();
+      const newsList = jsonData.items;
+
+      // Trier par date décroissante
+      newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      // Prendre les 3 plus récentes
+      const latest = newsList.slice(0, limit);
+      const container = document.getElementById("news-cards");
+      container.innerHTML = "";
+
+      latest.forEach(news => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${news.image}" alt="${news.title}">
+          <h3>${news.title}</h3>
+          <p>${news.excerpt}</p>
+          <a href="content/actualites/actualites.html" class="btn">Lire</a>
+        `;
+        container.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Erreur lors du chargement des actualités :", error);
+    }
   }
-}
 
-loadNews();
-</script>
+  loadNews();
+  </script>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
