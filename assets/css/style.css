@@ -354,6 +354,10 @@ nav ul li a:hover:not(.active) {
   margin-top: 10px;
 }
 
+.news-list .actu-block {
+  margin: 40px 10px;
+}
+
 
 /* ===== MENU BURGER ===== */
 .menu-toggle {
