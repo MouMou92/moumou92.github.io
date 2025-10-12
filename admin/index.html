@@ -6,35 +6,36 @@
     <meta http-equiv="Cache-Control" content="no-store" />
     <title>Administration — Awal Novembre</title>
 
-    <!-- Version locale du CMS -->
-    <script src="../assets/js/decap-cms.js"></script>
-
     <style>
-      body { font-family: Arial, sans-serif; color:#333; padding:20px; }
-      #nc-root { height: 100vh; }
-      .loading { text-align:center; margin-top:50px; }
+      body {font-family: Arial, sans-serif; color:#333; padding:20px;}
+      #nc-root {height:100vh;}
+      .loading {text-align:center; margin-top:50px;}
     </style>
   </head>
   <body>
     <div class="loading" id="loader">
       <h2>Chargement du panneau d’administration...</h2>
     </div>
-
     <div id="nc-root"></div>
 
-    <script>
-      function startCMS() {
-        if (typeof CMS !== "undefined") {
-          document.getElementById("loader").style.display = "none";
-          CMS.init({
-            config_path: "https://moumou92.github.io/admin/config.json",
-          });
-        } else {
-          setTimeout(startCMS, 200);
-        }
-      }
+    <!-- Charger la lib APRÈS le DOM -->
+    <script src="../assets/js/decap-cms.js" defer></script>
 
-      document.addEventListener("DOMContentLoaded", startCMS);
+    <script>
+      window.addEventListener("load", function () {
+        // attendre un court instant pour s'assurer que tout est prêt
+        setTimeout(() => {
+          if (window.CMS && typeof CMS.init === "function") {
+            document.getElementById("loader").style.display = "none";
+            CMS.init({
+              config_path: "https://moumou92.github.io/admin/config.json",
+            });
+          } else {
+            document.body.innerHTML =
+              "<p style='color:red'>Erreur : le CMS ne s’est pas chargé.</p>";
+          }
+        }, 800);
+      });
     </script>
   </body>
 </html>
