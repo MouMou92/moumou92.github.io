@@ -6,8 +6,8 @@
     <meta http-equiv="Cache-Control" content="no-store" />
     <title>Administration — Awal Novembre</title>
 
-    <!-- Build complet et autonome -->
-    <script src="https://cdn.jsdelivr.net/gh/decaporg/decap-cms@2.10.192/dist/decap-cms.js"></script>
+    <!-- Build officiel complet Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@3.0.15/dist/decap-cms.js"></script>
 
     <style>
       body {
@@ -28,14 +28,17 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        if (typeof CMS !== "undefined") {
-          CMS.init({
-            config_path: "https://moumou92.github.io/admin/config.json",
-          });
-        } else {
-          document.body.innerHTML =
-            "<p style='color:red'>Erreur : le CMS ne s’est pas chargé.</p>";
-        }
+        // Petit délai pour s'assurer que la lib est bien prête
+        setTimeout(function () {
+          if (typeof CMS !== "undefined") {
+            CMS.init({
+              config_path: "https://moumou92.github.io/admin/config.json",
+            });
+          } else {
+            document.body.innerHTML =
+              "<p style='color:red'>Erreur : le CMS ne s’est pas chargé.</p>";
+          }
+        }, 500);
       });
     </script>
   </body>
