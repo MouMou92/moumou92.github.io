@@ -22,6 +22,7 @@
 		<nav id="nav-menu">
 			<ul>
 				<li><a href="index.html" class="active">Accueil</a></li>
+				<li><a href="actualite.html">Actualités</a></li>
 				<li><a href="about.html">À propos</a></li>
 				<li><a href="gallery.html">Galerie</a></li>
 				<li><a href="donate.html">Faire un don</a></li>
@@ -51,25 +52,28 @@
 <script>
 async function loadNews(limit = 3) {
   const container = document.getElementById("news-cards");
-  const req = await fetch("content/news/index.json?_=" + Date.now());
-  const newsList = await req.json();
+  const req = await fetch("content/actualites/index.json?_=" + Date.now());
+  const data = await req.json();
+  const list = Array.isArray(data) ? data : (data.items || []);
 
-  const latest = newsList.slice(0, limit);
+  container.innerHTML = "";
+  const latest = list.slice(0, limit);
+
   latest.forEach(news => {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
       <img src="${news.image}" alt="${news.title}">
       <h3>${news.title}</h3>
-      <p>${news.excerpt}</p>
-      <a href="actualite.html#${news.slug}" class="btn">Lire</a>
+      <p>${news.excerpt || ""}</p>
+      <a href="content/actualites/actualites.html#${news.slug || ''}" class="btn">Lire</a>
     `;
     container.appendChild(card);
   });
 }
-
 loadNews();
 </script>
+
 
   </main>
 
