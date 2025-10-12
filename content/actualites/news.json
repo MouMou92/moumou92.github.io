@@ -1,3 +1,11 @@
 {
-  "items": []
+  "items": [
+    {
+      "title": "Fête nationale",
+      "date": "2025-07-21",
+      "image": "assets/images/uploads/01.jpg",
+      "excerpt": "Joyeuse fête",
+      "body": "🎉 Joyeuse fête nationale à tous ! En ce 21 juillet, célébrons ensemble notre belle Belgique, riche en diversité, en culture et en histoire. Que cette journée soit remplie de fierté, de joie et de moments inoubliables avec vos proches. Vive la Belgique ! 🎈🥳 "
+    }
+  ]
 }
