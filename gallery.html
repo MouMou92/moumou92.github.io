@@ -59,7 +59,7 @@
   async function loadGallery() {
     try {
       // Adapter ce chemin si ton fichier JSON est ailleurs
-      const response = await fetch("/content/gallery.json");
+      const response = await fetch("/content/actualites/gallery.json");
       if (!response.ok) throw new Error("Impossible de charger gallery.json");
 
       const data = await response.json();
