@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galerie - Nom de l’association</title>
+  <title>Galerie - ASBL Awal Novembre</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
@@ -13,20 +13,20 @@
   <header>
     <div class="container">
       <div class="logo-wrap">
-		<img class="logo" src="assets/images/logo.png" alt="ASBL Awal Novembre">
-	  </div>
+        <img class="logo" src="assets/images/logo.png" alt="ASBL Awal Novembre">
+      </div>
       <div class="menu-toggle" id="menu-toggle">☰</div>
 
-		<nav id="nav-menu">
-			<ul>
-				<li><a href="index.html">Accueil</a></li>
-				<li><a href="content/actualites/actualites.html">Actualités</a></li>
-				<li><a href="about.html">À propos</a></li>
-				<li><a href="gallery.html" class="active">Galerie</a></li>
-				<li><a href="donate.html">Faire un don</a></li>
-				<li><a href="contact.html">Contact</a></li>
-			</ul>
-		</nav>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="content/actualites/actualites.html">Actualités</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="gallery.html" class="active">Galerie</a></li>
+          <li><a href="donate.html">Faire un don</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
@@ -40,23 +40,54 @@
     </section>
 
     <section class="gallery-grid">
-      <div class="gallery-container">
-        <img src="assets/images/photo1.jpg" alt="Photo 1">
-        <img src="assets/images/photo2.jpg" alt="Photo 2">
-        <img src="assets/images/photo3.jpg" alt="Photo 3">
-        <img src="assets/images/photo4.jpg" alt="Photo 4">
-        <img src="assets/images/photo5.jpg" alt="Photo 5">
-        <img src="assets/images/photo6.jpg" alt="Photo 6">
+      <div class="gallery-container" id="gallery-container">
+        <!-- Les images seront insérées ici dynamiquement -->
       </div>
     </section>
   </main>
 
   <!-- Pied de page -->
   <footer>
-    <p>&copy; 2025 Association Nom — Tous droits réservés.</p>
+    <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
     <p><a href="contact.html">Nous contacter</a></p>
   </footer>
 
   <script src="assets/js/script.js"></script>
+
+  <!-- Script dynamique pour charger la galerie -->
+  <script>
+  async function loadGallery() {
+    try {
+      // Adapter ce chemin si ton fichier JSON est ailleurs
+      const response = await fetch("/content/gallery.json");
+      if (!response.ok) throw new Error("Impossible de charger gallery.json");
+
+      const data = await response.json();
+      const container = document.getElementById("gallery-container");
+      container.innerHTML = "";
+
+      if (!data.items || data.items.length === 0) {
+        container.innerHTML = "<p>Aucune image disponible pour le moment.</p>";
+        return;
+      }
+
+      data.items.forEach(item => {
+        const img = document.createElement("img");
+        img.src = item.image;
+        img.alt = item.caption || "Photo";
+        img.loading = "lazy";
+        container.appendChild(img);
+      });
+
+      console.log("✅ Galerie chargée :", data.items.length, "images");
+    } catch (error) {
+      console.error("⚠️ Erreur lors du chargement de la galerie :", error);
+      const container = document.getElementById("gallery-container");
+      container.innerHTML = "<p style='color:red;'>Erreur lors du chargement des images.</p>";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadGallery);
+  </script>
 </body>
 </html>
