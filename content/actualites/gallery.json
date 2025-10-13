@@ -2,31 +2,31 @@
   "items": [
     {
       "caption": "",
-      "image": "assets/images/uploads/gallery/01.jpg"
+      "image": "/assets/images/uploads/gallery/01.jpg"
     },
     {
       "caption": "",
-      "image": "assets/images/uploads/gallery/02.jpg"
+      "image": "/assets/images/uploads/gallery/02.jpg"
     },
     {
       "caption": "",
-      "image": "assets/images/uploads/gallery/03.jpg"
+      "image": "/assets/images/uploads/gallery/03.jpg"
     },
     {
       "caption": "",
-      "image": "assets/images/uploads/gallery/04.jpg"
+      "image": "/assets/images/uploads/gallery/04.jpg"
     },
     {
       "caption": "",
-      "image": "assets/images/uploads/gallery/05.jpg"
+      "image": "/assets/images/uploads/gallery/05.jpg"
     },
     {
       "caption": "",
-      "image": "assets/images/uploads/gallery/06.jpg"
+      "image": "/assets/images/uploads/gallery/06.jpg"
     },
     {
       "caption": "",
-      "image": "assets/images/uploads/gallery/07.jpg"
+      "image": "/assets/images/uploads/gallery/07.jpg"
     }
   ]
 }

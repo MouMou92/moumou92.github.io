@@ -26,14 +26,13 @@ header .container {
 }
 
 .logo {
-  width: 110px;
-  height: 110px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center;
+  position: center;
   background-color: transparent;
   overflow: hidden;
-  box-shadow: 0 0 6px rgba(0,0,0,0.3); /* optionnel : léger relief */
 }
 
 
