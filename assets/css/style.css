@@ -26,10 +26,18 @@ header .container {
 }
 
 .logo {
-  height: 60px;
-  width: auto;
-  border-radius: 6px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  background-color: transparent;
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3); /* optionnel : léger relief */
 }
+
+
+
 
 nav ul {
   list-style: none;
