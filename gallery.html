@@ -6,6 +6,50 @@
   <title>Galerie - ASBL Awal Novembre</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <style>
+    /* Styles du mode plein écran (lightbox) */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      cursor: default;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 32px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: 30px;
+      color: white;
+      font-size: 18px;
+      background: rgba(0,0,0,0.6);
+      padding: 8px 14px;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 
 <body>
@@ -41,7 +85,7 @@
 
     <section class="gallery-grid">
       <div class="gallery-container" id="gallery-container">
-        <!-- Les images seront insérées ici dynamiquement -->
+        <!-- Les images seront insérées dynamiquement -->
       </div>
     </section>
   </main>
@@ -52,14 +96,21 @@
     <p><a href="contact.html">Nous contacter</a></p>
   </footer>
 
+  <!-- Fenêtre lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
   <script src="assets/js/script.js"></script>
 
-  <!-- Script dynamique pour charger la galerie -->
+  <!-- Script pour charger la galerie et gérer la lightbox -->
   <script>
   async function loadGallery() {
     try {
-      // Adapter ce chemin si ton fichier JSON est ailleurs
-      const response = await fetch("/content/actualites/gallery.json");
+      // Chargement du JSON depuis le bon dossier
+      const response = await fetch("content/actualites/gallery.json");
       if (!response.ok) throw new Error("Impossible de charger gallery.json");
 
       const data = await response.json();
@@ -76,6 +127,8 @@
         img.src = item.image;
         img.alt = item.caption || "Photo";
         img.loading = "lazy";
+        img.classList.add("gallery-thumb");
+        img.addEventListener("click", () => openLightbox(item.image, item.caption));
         container.appendChild(img);
       });
 
@@ -86,6 +139,28 @@
       container.innerHTML = "<p style='color:red;'>Erreur lors du chargement des images.</p>";
     }
   }
+
+  // === Gestion de la Lightbox ===
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxCaption = document.getElementById("lightbox-caption");
+  const closeBtn = document.getElementById("lightbox-close");
+
+  function openLightbox(src, caption) {
+    lightbox.style.display = "flex";
+    lightboxImg.src = src;
+    lightboxCaption.textContent = caption || "";
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = "none";
+    lightboxImg.src = "";
+  }
+
+  // Fermer par clic sur fond ou sur la croix
+  lightbox.addEventListener("click", e => {
+    if (e.target === lightbox || e.target === closeBtn) closeLightbox();
+  });
 
   document.addEventListener("DOMContentLoaded", loadGallery);
   </script>
