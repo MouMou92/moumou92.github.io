@@ -25,15 +25,25 @@ header .container {
   margin: auto;
 }
 
-.logo {
-  width: 90px;
-  height: 90px;
+.logo-wrap {
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  object-fit: cover;
-  position: center;
-  background-color: transparent;
-  overflow: hidden;
+  overflow: hidden;       /* coupe ce qui dépasse */
+  display: inline-block;
 }
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  transform: scale(1.15); /* <<< ZOOM ICI */
+  transform-origin: center;
+  display: block;
+}
+
+
 
 
 
