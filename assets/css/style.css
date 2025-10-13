@@ -26,8 +26,8 @@ header .container {
 }
 
 .logo-wrap {
-  width: 110px;
-  height: 110px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   overflow: hidden;       /* coupe ce qui dépasse */
   display: inline-block;
