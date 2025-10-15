@@ -1,3 +1,4 @@
+/* === STYLE GLOBAL === */
 html {
   scroll-behavior: smooth;
 }
@@ -5,16 +6,15 @@ html {
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
-  color: #222;
-  background: #f4f6f8;
+  color: #2e2e2e;
+  background: #f3f1ee; /* gris chaud */
 }
 
-/* ===== HEADER ===== */
+/* === HEADER === */
 header {
-  background: #2c3e50;
+  background: #34495e; /* bleu-gris profond */
   color: white;
   padding: 10px 0;
-  position: relative;
 }
 
 header .container {
@@ -29,8 +29,7 @@ header .container {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  overflow: hidden;       /* coupe ce qui dépasse */
-  display: inline-block;
+  overflow: hidden;
 }
 
 .logo {
@@ -38,74 +37,87 @@ header .container {
   height: 100%;
   object-fit: cover;
   object-position: 50% 45%;
-  transform: scale(1.15); /* <<< ZOOM ICI */
-  transform-origin: center;
-  display: block;
+  transform: scale(1.15);
 }
 
-
-
-
-
-
+/* === NAVIGATION === */
 nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
   margin: 0;
+  padding: 0;
 }
 
 nav a {
   color: white;
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-/* ===== HERO ===== */
+nav a:hover,
+nav a.active {
+  color: #d4af37; /* doré doux */
+}
+
+/* === SECTION HERO === */
 .hero {
   text-align: center;
-  padding: 120px 20px; /* un peu plus haut, plus visible */
+  padding: 120px 20px;
   background: url("../images/cover.jpg") center 45% / cover no-repeat;
   color: white;
 }
 
-
-.hero h1 span {
-  color: #ffcc00;
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
 
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #ffcc00;
-  color: #000;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
+.hero p {
+  font-size: 20px;
+  font-weight: 300;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
-/* ===== SECTION ACTUALITÉS (ACCUEIL) ===== */
-.news {
-  padding: 40px 20px;
-  background: white;
+/* === SECTIONS GENERALES === */
+section {
+  padding: 60px 20px;
 }
 
+.container {
+  width: 90%;
+  margin: auto;
+  max-width: 1200px;
+}
+
+h2 {
+  color: #34495e;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* === CARTES === */
 .cards {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  justify-content: center;
+  gap: 30px;
 }
 
 .card {
-  background: #f2f2f2;
+  background: white;
   border-radius: 10px;
-  overflow: hidden;
-  width: 300px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 25px;
+  max-width: 320px;
+  text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -114,300 +126,64 @@ nav a {
   box-shadow: 0 6px 14px rgba(0,0,0,0.2);
 }
 
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
 .card h3 {
-  font-size: 18px;
-  margin: 10px 0 5px;
-  color: #2c3e50;
+  color: #34495e;
+  margin-bottom: 10px;
 }
 
 .card p {
-  font-size: 14px;
-  flex-grow: 1;
-  padding: 0 10px;
   color: #333;
-  margin-bottom: 10px;
+  font-size: 15px;
 }
 
-/* ===== FOOTER ===== */
-footer {
-  text-align: center;
-  background: #2c3e50;
-  color: white;
-  padding: 15px 0;
-  margin-top: 40px;
-}
-
-/* ===== PAGE ABOUT ===== */
-.about-intro, .mission, .team {
-  padding: 60px 20px;
-  text-align: center;
-  background: white;
-}
-
-.about-intro p, .mission p {
-  max-width: 800px;
-  margin: 15px auto;
-  line-height: 1.6;
-}
-
-.team {
-  padding: 60px 20px;
-  text-align: center;
-  background: white;
-}
-
-.member {
-  background: #f4f4f4;
-  border-radius: 10px;
-  width: 280px;
-  padding: 20px;
-  margin: 0 auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.member img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.member h3 {
-  margin: 15px 0 5px;
-  color: #2c3e50;
-  font-size: 22px;
-}
-
-.member p {
-  font-size: 16px;
-  color: #555;
-}
-
-
-/* ===== GALERIE ===== */
-.gallery-header {
-  text-align: center;
-  padding: 60px 20px 30px;
-  background: white;
-}
-
-.gallery-header h1 {
-  margin-bottom: 10px;
-  color: #2c3e50;
-}
-
-.gallery-grid {
-  padding: 20px;
-  background: #fafafa;
-}
-
-.gallery-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 15px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.gallery-container img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.gallery-container img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-/* ===== PAGE DONATE ===== */
-.donate-intro, .donate-options, .donate-thanks {
-  padding: 60px 20px;
-  text-align: center;
-  background: white;
-}
-
-.donation-methods {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.method {
-  background: #f9f9f9;
-  border-radius: 10px;
-  padding: 30px 20px;
-  margin: 40px auto;
-  width: 320px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.method:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-}
-
-/* ===== PAGE CONTACT ===== */
-.contact-header {
-  text-align: center;
-  padding: 60px 20px 30px;
-  background: white;
-}
-
-.contact-form {
-  background: #f9f9f9;
-  padding: 40px 20px;
-}
-
-.contact-form form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #2c3e50;
-  outline: none;
-}
-
-.contact-form button {
-  background: #ffcc00;
+/* === BOUTONS === */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #d4af37;
   color: #000;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
+  text-decoration: none;
+  border-radius: 5px;
   font-weight: bold;
-  cursor: pointer;
   transition: background 0.3s ease;
 }
 
-.contact-form button:hover {
-  background: #f4b800;
+.btn:hover {
+  background: #b9962d;
 }
 
-.contact-info {
+/* === SECTION NEWS === */
+.news {
+  background: #fff;
   text-align: center;
-  background: white;
-  padding: 40px 20px;
 }
 
-.contact-info h2 {
-  color: #2c3e50;
-  margin-bottom: 10px;
+.news .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
 }
 
-/* ===== LIEN ACTIF ===== */
-nav ul li a.active {
-  color: #f1c40f;
-  font-weight: bold;
-  border-bottom: 2px solid #f1c40f;
-}
-
-nav ul li a:hover:not(.active) {
-  color: #ecf0f1;
-}
-
-/* ===== PAGE ACTUALITÉS - STYLE MAGAZINE ===== */
-.news-page {
-  padding: 60px 20px;
-  background: #f4f6f8;
-}
-
-.news-page h1 {
+/* === FOOTER === */
+footer {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 50px;
-  font-size: 32px;
-  font-weight: 600;
+  background: #34495e;
+  color: white;
+  padding: 20px 0;
+  margin-top: 40px;
 }
 
-.news-list {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
+footer a {
+  color: #d4af37;
+  text-decoration: none;
 }
 
-.news-list .actu-block {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background: transparent;
+footer a:hover {
+  text-decoration: underline;
 }
 
-.news-list .actu-block:last-child {
-  border-bottom: none;
-}
-
-.news-list img {
-  flex: 1 1 45%;
-  max-width: 45%;
-  height: auto;
-  border-radius: 10px;
-  object-fit: contain;
-  background: transparent;
-}
-
-.news-list .actu-content {
-  flex: 1 1 50%;
-  padding: 0 25px;
-}
-
-.news-list h2 {
-  font-size: 24px;
-  color: #2c3e50;
-  margin: 10px 0;
-}
-
-.news-list p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.news-list .actu-body {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #333;
-  margin-top: 10px;
-}
-
-.news-list .actu-block:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-/* ===== MENU BURGER ===== */
+/* === MENU BURGER === */
 .menu-toggle {
   display: none;
   font-size: 28px;
@@ -426,9 +202,8 @@ nav ul li a:hover:not(.active) {
   }
 
   nav ul {
-    display: flex;
     flex-direction: column;
-    background: #2c3e50;
+    background: #34495e;
     position: fixed;
     top: 70px;
     right: 0;
@@ -436,7 +211,6 @@ nav ul li a:hover:not(.active) {
     text-align: left;
     padding: 10px 0;
     margin: 0;
-    list-style: none;
     opacity: 0;
     transform: translateX(100%);
     pointer-events: none;
@@ -451,38 +225,21 @@ nav ul li a:hover:not(.active) {
   }
 
   nav ul li a {
-    color: white;
     display: block;
     padding: 15px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
 
-  nav ul li a:hover {
-    background: #1a252f;
-  }
-
-  .container {
-    position: relative;
-  }
-
-  .news-list .actu-block {
+  .cards {
     flex-direction: column;
-    text-align: center;
+    align-items: center;
   }
 
-  .news-list img {
-    max-width: 100%;
-    margin-bottom: 15px;
+  .hero {
+    padding: 100px 20px;
   }
 
-  .news-list .actu-content {
-    padding: 0;
-  }
-}
-
-/* PETITS ÉCRANS */
-@media (max-width: 600px) {
-  .gallery-container img {
-    height: 180px;
+  h1 {
+    font-size: 32px;
   }
 }

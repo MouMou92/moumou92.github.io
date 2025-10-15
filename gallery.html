@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
   <style>
-    /* Styles du mode plein écran (lightbox) */
     .lightbox {
       display: none;
       position: fixed;
@@ -16,20 +15,17 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0, 0, 0, 0.85);
       align-items: center;
       justify-content: center;
       cursor: zoom-out;
     }
-
     .lightbox img {
       max-width: 90%;
       max-height: 90%;
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      cursor: default;
     }
-
     .lightbox-close {
       position: absolute;
       top: 20px;
@@ -39,7 +35,6 @@
       cursor: pointer;
       user-select: none;
     }
-
     .lightbox-caption {
       position: absolute;
       bottom: 30px;
@@ -53,19 +48,20 @@
 </head>
 
 <body>
-  <!-- En-tête -->
+  <!-- ===== HEADER ===== -->
   <header>
     <div class="container">
       <div class="logo-wrap">
         <img class="logo" src="assets/images/logo.png" alt="ASBL Awal Novembre">
       </div>
       <div class="menu-toggle" id="menu-toggle">☰</div>
-
       <nav id="nav-menu">
         <ul>
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="content/actualites/actualites.html">Actualités</a></li>
           <li><a href="about.html">À propos</a></li>
+          <li><a href="actions.html">Actions</a></li>
+          <li><a href="rejoindre.html">Rejoindre</a></li>
+          <li><a href="content/actualites/actualites.html">Actualités</a></li>
           <li><a href="gallery.html" class="active">Galerie</a></li>
           <li><a href="donate.html">Faire un don</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -74,42 +70,39 @@
     </div>
   </header>
 
-  <!-- Contenu principal -->
+  <!-- ===== SECTION GALERIE ===== -->
   <main>
-    <section class="gallery-header">
+    <section class="intro">
       <div class="container">
-        <h1>Galerie photos</h1>
-        <p>Découvrez les moments forts de nos actions et événements récents.</p>
+        <h1>Galerie Photos</h1>
+        <p>Découvrez les moments forts des événements et actions de l’<strong>ASBL Awal Novembre</strong>.</p>
       </div>
     </section>
 
-    <section class="gallery-grid">
-      <div class="gallery-container" id="gallery-container">
-        <!-- Les images seront insérées dynamiquement -->
+    <section class="gallery-grid" style="background:#fff;">
+      <div class="container gallery-container" id="gallery-container">
+        <!-- Images chargées dynamiquement -->
       </div>
     </section>
   </main>
 
-  <!-- Pied de page -->
-  <footer>
-    <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
-    <p><a href="contact.html">Nous contacter</a></p>
-  </footer>
-
-  <!-- Fenêtre lightbox -->
+  <!-- ===== LIGHTBOX ===== -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lightbox-close">&times;</span>
     <img id="lightbox-img" src="" alt="">
     <div class="lightbox-caption" id="lightbox-caption"></div>
   </div>
 
-  <script src="assets/js/script.js"></script>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
+    <p><a href="contact.html">Nous contacter</a></p>
+  </footer>
 
-  <!-- Script pour charger la galerie et gérer la lightbox -->
+  <!-- ===== SCRIPT GALERIE ===== -->
   <script>
   async function loadGallery() {
     try {
-      // Chargement du JSON depuis le bon dossier
       const response = await fetch("content/actualites/gallery.json");
       if (!response.ok) throw new Error("Impossible de charger gallery.json");
 
@@ -128,19 +121,17 @@
         img.alt = item.caption || "Photo";
         img.loading = "lazy";
         img.classList.add("gallery-thumb");
+        img.style.cursor = "pointer";
         img.addEventListener("click", () => openLightbox(item.image, item.caption));
         container.appendChild(img);
       });
-
-      console.log("✅ Galerie chargée :", data.items.length, "images");
     } catch (error) {
-      console.error("⚠️ Erreur lors du chargement de la galerie :", error);
-      const container = document.getElementById("gallery-container");
-      container.innerHTML = "<p style='color:red;'>Erreur lors du chargement des images.</p>";
+      console.error("Erreur lors du chargement de la galerie :", error);
+      document.getElementById("gallery-container").innerHTML =
+        "<p style='color:red;'>Erreur lors du chargement des images.</p>";
     }
   }
 
-  // === Gestion de la Lightbox ===
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const lightboxCaption = document.getElementById("lightbox-caption");
@@ -157,12 +148,13 @@
     lightboxImg.src = "";
   }
 
-  // Fermer par clic sur fond ou sur la croix
   lightbox.addEventListener("click", e => {
     if (e.target === lightbox || e.target === closeBtn) closeLightbox();
   });
 
   document.addEventListener("DOMContentLoaded", loadGallery);
   </script>
+
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

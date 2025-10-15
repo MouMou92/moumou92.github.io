@@ -3,79 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Faire un don - Nom de l’association</title>
+  <title>Faire un Don - ASBL Awal Novembre</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
 
 <body>
-  <!-- En-tête -->
+  <!-- ===== HEADER ===== -->
   <header>
     <div class="container">
       <div class="logo-wrap">
-		<img class="logo" src="assets/images/logo.png" alt="ASBL Awal Novembre">
-	  </div>
+        <img class="logo" src="assets/images/logo.png" alt="ASBL Awal Novembre">
+      </div>
       <div class="menu-toggle" id="menu-toggle">☰</div>
-
-		<nav id="nav-menu">
-			<ul>
-				<li><a href="index.html">Accueil</a></li>
-				<li><a href="content/actualites/actualites.html">Actualités</a></li>
-				<li><a href="about.html">À propos</a></li>
-				<li><a href="gallery.html">Galerie</a></li>
-				<li><a href="donate.html" class="active">Faire un don</a></li>
-				<li><a href="contact.html">Contact</a></li>
-			</ul>
-		</nav>
-
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="actions.html">Actions</a></li>
+          <li><a href="rejoindre.html">Rejoindre</a></li>
+          <li><a href="content/actualites/actualites.html">Actualités</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="donate.html" class="active">Faire un don</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <!-- Contenu principal -->
+  <!-- ===== SECTION INTRO ===== -->
   <main>
-    <section class="donate-intro">
+    <section class="intro">
       <div class="container">
-        <h1>Faire un don</h1>
+        <h1>Faire un Don</h1>
         <p>
-          Votre contribution nous aide à poursuivre nos actions au quotidien.  
-          Chaque don, petit ou grand, compte énormément pour soutenir nos projets
-          et venir en aide à ceux qui en ont besoin.
+          Votre générosité permet à <strong>Awal Novembre</strong> de poursuivre ses actions solidaires, culturelles et humanitaires
+          au sein de la communauté. Chaque contribution, petite ou grande, fait une réelle différence.
         </p>
       </div>
     </section>
 
-	<section class="donate-options">
-	  <div class="container">
-		<h2>Faire un don via PayPal</h2>
-
-		<div class="method">
-		  <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-color.svg" alt="Logo PayPal">
-		  <p>Faites un don sécurisé en ligne :</p>
-
-		  <form action="https://www.paypal.com/donate" method="post" target="_top">
-			<input type="hidden" name="hosted_button_id" value="HV9NVH3BY486S" />
-			<button type="submit" style="background:none;border:none;cursor:pointer;">
-			  <img src="https://www.paypalobjects.com/fr_FR/BE/i/btn/btn_donate_LG.gif"
-				   alt="Faire un don avec PayPal"
-				   style="width:160px;height:auto;">
-			</button>
-		  </form>
-		</div>
-	  </div>
-	</section>
-
-
-    <section class="donate-thanks">
+    <!-- ===== SECTION PAYPAL ===== -->
+    <section class="themes">
       <div class="container">
-        <h2>Merci ❤️</h2>
-        <p>Chaque geste nous permet d’avancer. Ensemble, faisons la différence !</p>
+        <h2>Faire un don en ligne</h2>
+        <div class="card" style="max-width:400px;margin:auto;">
+          <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-color.svg" alt="Logo PayPal" style="width:150px;margin:auto;display:block;margin-bottom:20px;">
+          <p style="text-align:center;">
+            Effectuez un don sécurisé via PayPal pour soutenir nos projets solidaires.
+          </p>
+          <form action="https://www.paypal.com/donate" method="post" target="_top" style="text-align:center;margin-top:20px;">
+            <input type="hidden" name="hosted_button_id" value="HV9NVH3BY486S" />
+            <button type="submit" style="background:none;border:none;cursor:pointer;">
+              <img src="https://www.paypalobjects.com/fr_FR/BE/i/btn/btn_donate_LG.gif"
+                   alt="Faire un don avec PayPal" style="width:160px;height:auto;">
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION MERCI ===== -->
+    <section class="intro" style="background:#f9f9f9;">
+      <div class="container">
+        <h2>Merci pour votre soutien ❤️</h2>
+        <p>
+          Grâce à votre aide, nous pouvons continuer à construire des ponts entre les générations,
+          soutenir les familles et renforcer les liens de solidarité au sein de notre communauté.
+        </p>
       </div>
     </section>
   </main>
 
-  <!-- Pied de page -->
+  <!-- ===== FOOTER ===== -->
   <footer>
-    <p>&copy; 2025 Association Nom — Tous droits réservés.</p>
+    <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
     <p><a href="contact.html">Nous contacter</a></p>
   </footer>
 

@@ -6,9 +6,7 @@
   <title>Accueil - ASBL Awal Novembre</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-  <style>
-    html { scroll-behavior: smooth; }
-  </style>
+  <style>html{scroll-behavior:smooth;}</style>
 </head>
 
 <body>
@@ -16,14 +14,16 @@
   <header>
     <div class="container">
       <div class="logo-wrap">
-		<img class="logo" src="assets/images/logo.png" alt="ASBL Awal Novembre">
-	  </div>
+        <img class="logo" src="assets/images/logo.png" alt="ASBL Awal Novembre">
+      </div>
       <div class="menu-toggle" id="menu-toggle">☰</div>
       <nav id="nav-menu">
         <ul>
           <li><a href="index.html" class="active">Accueil</a></li>
-          <li><a href="content/actualites/actualites.html">Actualités</a></li>
           <li><a href="about.html">À propos</a></li>
+          <li><a href="actions.html">Actions</a></li>
+          <li><a href="rejoindre.html">Rejoindre</a></li>
+          <li><a href="content/actualites/actualites.html">Actualités</a></li>
           <li><a href="gallery.html">Galerie</a></li>
           <li><a href="donate.html">Faire un don</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -32,65 +32,82 @@
     </div>
   </header>
 
-  <!-- ===== CONTENU PRINCIPAL ===== -->
-  <main>
-    <section class="hero">
-      <div class="hero-content">
+  <!-- ===== SECTION HERO ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>ASBL Awal Novembre</h1>
+      <p>Bâtir une communauté algérienne unie, solidaire et épanouie dans le Hainaut.</p>
+    </div>
+  </section>
 
+  <!-- ===== SECTION INTRO ===== -->
+  <section class="intro">
+    <div class="container">
+      <h2>Notre engagement</h2>
+      <p>Awal Novembre agit chaque jour pour faire vivre les valeurs de solidarité, de fraternité et d’unité
+      au sein de la communauté algérienne du Hainaut. Ensemble, nous œuvrons pour une société plus juste,
+      bienveillante et fraternelle.</p>
+    </div>
+  </section>
+
+  <!-- ===== BLOCS THEMATIQUES ===== -->
+  <section class="themes">
+    <div class="container cards">
+      <div class="card">
+        <h3>Notre Mission</h3>
+        <p>Soutenir les familles, renforcer les liens entre générations et promouvoir les valeurs d’entraide
+        et de fraternité dans le Hainaut.</p>
       </div>
-    </section>
+      <div class="card">
+        <h3>Nos Valeurs</h3>
+        <p>Fraternité, Solidarité, Respect, Bienveillance et Transmission. Ces piliers guident
+        chaque action menée par l’association.</p>
+      </div>
+      <div class="card">
+        <h3>Nos Actions</h3>
+        <p>Aide sociale et administrative, accompagnement des étudiants, visites solidaires,
+        et organisation d’activités culturelles et éducatives.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- ===== ACTUALITÉS ===== -->
-    <section class="news">
+  <!-- ===== ACTUALITES ===== -->
+  <section class="news">
+    <div class="container">
       <h2>Nos dernières actualités</h2>
       <div class="cards" id="news-cards"></div>
-      <div style="text-align:center; margin-top:20px;">
+      <div class="center">
         <a href="content/actualites/actualites.html" class="btn">Voir toutes les actualités</a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <!-- ===== FOOTER ===== -->
   <footer>
     <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
+    <p><a href="contact.html">Nous contacter</a></p>
   </footer>
 
-  <!-- ===== SCRIPT ACTUALITÉS ===== -->
+  <!-- ===== SCRIPTS ===== -->
   <script>
-  // Fonction pour créer un identifiant compatible avec accents et caractères spéciaux
-  function slugify(text) {
-    return text
-      .toString()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-zA-Z0-9\s-]/g, "")
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, "-");
-  }
-
   async function loadNews(limit = 3) {
     try {
       const req = await fetch("content/actualites/news.json?_=" + Date.now());
       const jsonData = await req.json();
       const newsList = jsonData.items;
-
-      // Trie du plus récent au plus ancien
       newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
-
       const latest = newsList.slice(0, limit);
       const container = document.getElementById("news-cards");
       container.innerHTML = "";
 
       latest.forEach(news => {
-        const id = slugify(news.title);
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
           <img src="${news.image}" alt="${news.title}">
           <h3>${news.title}</h3>
           <p>${news.excerpt}</p>
-          <a href="content/actualites/actualites.html#${id}" class="btn">Lire</a>
+          <a href="content/actualites/actualites.html" class="btn">Lire</a>
         `;
         container.appendChild(card);
       });
@@ -98,23 +115,9 @@
       console.error("Erreur lors du chargement des actualités :", error);
     }
   }
-
   loadNews();
   </script>
 
-  <!-- ===== MENU BURGER ===== -->
-  <script>
-	document.addEventListener("DOMContentLoaded", () => {
-	  const menuToggle = document.getElementById("menu-toggle");
-	  const navMenu = document.getElementById("nav-menu");
-	  const navList = navMenu ? navMenu.querySelector("ul") : null;
-
-	  if (menuToggle && navList) {
-		menuToggle.addEventListener("click", () => {
-		  navList.classList.toggle("active");
-		});
-	  }
-	});
-  </script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
