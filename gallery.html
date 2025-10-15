@@ -7,6 +7,44 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
   <style>
+    body {
+      background: #2b2b2b;
+      color: #f3f1ee;
+    }
+    .gallery-header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: #2b2b2b;
+    }
+    .gallery-header h1 {
+      margin-bottom: 10px;
+      color: #d4af37;
+    }
+    .gallery-header p {
+      color: #ddd;
+    }
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+    .gallery-container img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery-container img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    }
+    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -15,23 +53,22 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0,0,0,0.9);
       align-items: center;
       justify-content: center;
-      cursor: zoom-out;
     }
     .lightbox img {
       max-width: 90%;
       max-height: 90%;
       border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
     .lightbox-close {
       position: absolute;
       top: 20px;
       right: 30px;
-      font-size: 32px;
-      color: white;
+      font-size: 36px;
+      color: #fff;
       cursor: pointer;
       user-select: none;
     }
@@ -48,7 +85,7 @@
 </head>
 
 <body>
-  <!-- ===== HEADER ===== -->
+  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="logo-wrap">
@@ -70,42 +107,39 @@
     </div>
   </header>
 
-  <!-- ===== SECTION GALERIE ===== -->
+  <!-- CONTENU PRINCIPAL -->
   <main>
-    <section class="intro">
+    <section class="gallery-header">
       <div class="container">
         <h1>Galerie Photos</h1>
-        <p>Découvrez les moments forts des événements et actions de l’<strong>ASBL Awal Novembre</strong>.</p>
+        <p>Découvrez les moments forts de nos événements et activités.</p>
       </div>
     </section>
 
-    <section class="gallery-grid" style="background:#fff;">
-      <div class="container gallery-container" id="gallery-container">
-        <!-- Images chargées dynamiquement -->
-      </div>
+    <section class="gallery-grid">
+      <div class="gallery-container" id="gallery-container"></div>
     </section>
   </main>
 
-  <!-- ===== LIGHTBOX ===== -->
+  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lightbox-close">&times;</span>
     <img id="lightbox-img" src="" alt="">
     <div class="lightbox-caption" id="lightbox-caption"></div>
   </div>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
     <p><a href="contact.html">Nous contacter</a></p>
   </footer>
 
-  <!-- ===== SCRIPT GALERIE ===== -->
+  <!-- SCRIPT LIGHTBOX & CHARGEMENT -->
   <script>
   async function loadGallery() {
     try {
       const response = await fetch("content/actualites/gallery.json");
       if (!response.ok) throw new Error("Impossible de charger gallery.json");
-
       const data = await response.json();
       const container = document.getElementById("gallery-container");
       container.innerHTML = "";
@@ -119,9 +153,6 @@
         const img = document.createElement("img");
         img.src = item.image;
         img.alt = item.caption || "Photo";
-        img.loading = "lazy";
-        img.classList.add("gallery-thumb");
-        img.style.cursor = "pointer";
         img.addEventListener("click", () => openLightbox(item.image, item.caption));
         container.appendChild(img);
       });
@@ -142,12 +173,10 @@
     lightboxImg.src = src;
     lightboxCaption.textContent = caption || "";
   }
-
   function closeLightbox() {
     lightbox.style.display = "none";
     lightboxImg.src = "";
   }
-
   lightbox.addEventListener("click", e => {
     if (e.target === lightbox || e.target === closeBtn) closeLightbox();
   });
