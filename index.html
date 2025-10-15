@@ -89,51 +89,71 @@
 
   <!-- ===== SCRIPTS ===== -->
 <script>
-  // Fonction pour créer un identifiant compatible avec accents et caractères spéciaux
-  function slugify(text) {
-    return text
-      .toString()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-zA-Z0-9\s-]/g, "")
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, "-");
-  }
+/* Utilitaire: slug sans accents */
+function slugify(text) {
+  return text.toString()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9\s-]/g, "")
+    .trim().toLowerCase().replace(/\s+/g, "-");
+}
 
-  async function loadNews(limit = 3) {
-    try {
-      const req = await fetch("content/actualites/news.json?_=" + Date.now());
-      const jsonData = await req.json();
-      const newsList = jsonData.items;
+/* Charge et rend les 3 dernières actus */
+async function loadNews(limit = 3) {
+  const container = document.getElementById("news-cards");
+  try {
+    // Résout correctement l’URL, que le site soit à la racine ou dans un sous-dossier
+    const newsURL = new URL("content/actualites/news.json", document.baseURI);
+    newsURL.searchParams.set("_", Date.now()); // anti-cache
 
-      // Trie du plus récent au plus ancien
-      newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-      const latest = newsList.slice(0, limit);
-      const container = document.getElementById("news-cards");
-      container.innerHTML = "";
-
-      latest.forEach(news => {
-        const id = slugify(news.title);
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${news.image}" alt="${news.title}" style="height:180px;object-fit:cover;border-radius:10px 10px 0 0;">
-          <h3>${news.title}</h3>
-          <p>${news.excerpt || ""}</p>
-          <a href="content/actualites/actualites.html#${id}" class="btn">Lire</a>
-        `;
-        container.appendChild(card);
-      });
-    } catch (error) {
-      console.error("Erreur lors du chargement des actualités :", error);
+    console.log("Chargement actus depuis:", newsURL.href);
+    const res = await fetch(newsURL.href);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const list = (data && Array.isArray(data.items)) ? data.items : [];
+    if (!list.length) {
+      container.innerHTML = '<p class="muted">Aucune actualité pour le moment.</p>';
+      return;
     }
-  }
 
-  // Appel direct
-  loadNews();
+    // tri + rendu
+    list.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const latest = list.slice(0, limit);
+    container.innerHTML = "";
+
+    latest.forEach(news => {
+      const id = slugify(news.title || "");
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${news.image}" alt="${news.title || ""}">
+        <h3>${news.title || ""}</h3>
+        <p>${news.excerpt || ""}</p>
+        <a href="content/actualites/actualites.html#${id}" class="btn">Lire</a>
+      `;
+      container.appendChild(card);
+    });
+
+    // Uniformise la hauteur des cartes après rendu + chargement images
+    const normalizeHeights = () => {
+      const cards = [...container.querySelectorAll(".card")];
+      if (!cards.length) return;
+      cards.forEach(c => c.style.height = "");
+      const max = Math.max(...cards.map(c => c.offsetHeight));
+      cards.forEach(c => c.style.height = max + "px");
+    };
+    normalizeHeights();
+    window.addEventListener("load", normalizeHeights);
+    window.addEventListener("resize", normalizeHeights);
+  } catch (err) {
+    console.error("Erreur actus index:", err);
+    container.innerHTML = '<p class="muted">Impossible de charger les actualités.</p>';
+  }
+}
+
+// Appel direct (pas de DOMContentLoaded, on est en bas de page)
+loadNews();
 </script>
+
 
 
 
