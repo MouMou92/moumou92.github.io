@@ -6,11 +6,82 @@
   <title>Actualités - ASBL Awal Novembre</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="icon" type="image/x-icon" href="../../assets/images/favicon.ico">
-  <style>html{scroll-behavior:smooth;}</style>
+  <style>
+    body {
+      background: #f3f1ee;
+      color: #2e2e2e;
+    }
+    .news-page {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .news-page h1 {
+      text-align: center;
+      color: #34495e;
+      font-size: 32px;
+      margin-bottom: 50px;
+    }
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+    .actu-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .actu-block:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    .actu-block img {
+      width: 48%;
+      height: 300px;
+      object-fit: cover;
+    }
+    .actu-content {
+      width: 48%;
+      padding: 25px;
+    }
+    .actu-content h2 {
+      color: #34495e;
+      margin-top: 0;
+    }
+    .actu-content em {
+      color: #d4af37;
+      font-style: normal;
+    }
+    .actu-content p {
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .highlight {
+      box-shadow: 0 0 15px #d4af37;
+    }
+    @media (max-width: 768px) {
+      .actu-block {
+        flex-direction: column;
+      }
+      .actu-block img, .actu-content {
+        width: 100%;
+      }
+      .actu-block img {
+        height: 220px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <!-- ===== HEADER ===== -->
+  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="logo-wrap">
@@ -32,27 +103,19 @@
     </div>
   </header>
 
-  <!-- ===== CONTENU ===== -->
-  <main>
-    <section class="intro">
-      <div class="container">
-        <h1>Nos Actualités</h1>
-        <p>Découvrez les événements récents, les projets et les actions menées par l’<strong>ASBL Awal Novembre</strong>.</p>
-      </div>
-    </section>
-
-    <section class="news-page">
-      <div class="container" id="news-list"></div>
-    </section>
+  <!-- CONTENU -->
+  <main class="news-page">
+    <h1>Nos Actualités</h1>
+    <div class="news-list" id="news-list"></div>
   </main>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 ASBL Awal Novembre — Tous droits réservés.</p>
     <p><a href="../../contact.html">Nous contacter</a></p>
   </footer>
 
-  <!-- ===== SCRIPT ACTUALITÉS ===== -->
+  <!-- SCRIPT -->
   <script>
   function slugify(text) {
     return text.toString()
@@ -74,20 +137,21 @@
       const container = document.getElementById("news-list");
       container.innerHTML = "";
 
-      newsList.forEach(news => {
+      newsList.forEach((news, index) => {
         const id = slugify(news.title);
-        const div = document.createElement("div");
-        div.className = "card";
-        div.id = id;
-        div.innerHTML = `
-          <img src="../../${news.image}" alt="${news.title}" style="width:100%;border-radius:8px;">
-          <h3>${news.title}</h3>
-          <p><em>${new Date(news.date).toLocaleDateString("fr-FR", {
-            year: "numeric", month: "long", day: "numeric"
-          })}</em></p>
-          <p>${news.body || news.excerpt}</p>
+        const block = document.createElement("div");
+        block.className = "actu-block" + (index % 2 ? " reverse" : "");
+        block.id = id;
+        block.innerHTML = `
+          <img src="../../${news.image}" alt="${news.title}">
+          <div class="actu-content">
+            <h2>${news.title}</h2>
+            <p><em>${new Date(news.date).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })}</em></p>
+            <p>${news.body || news.excerpt}</p>
+          </div>
         `;
-        container.appendChild(div);
+        if (index % 2 === 1) block.querySelector("img").style.order = "2";
+        container.appendChild(block);
       });
 
       const hash = window.location.hash;
@@ -95,8 +159,8 @@
         const target = document.querySelector(hash);
         if (target) {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
-          target.style.boxShadow = "0 0 15px #d4af37";
-          setTimeout(() => target.style.boxShadow = "", 2000);
+          target.classList.add("highlight");
+          setTimeout(() => target.classList.remove("highlight"), 2000);
         }
       }
     } catch (error) {
@@ -106,7 +170,7 @@
     }
   }
 
-  loadAllNews();
+  document.addEventListener("DOMContentLoaded", loadAllNews);
   </script>
 
   <script src="../../assets/js/script.js"></script>
