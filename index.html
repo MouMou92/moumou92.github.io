@@ -101,7 +101,7 @@ function slugify(text) {
 
 async function loadNews(limit = 3) {
   try {
-    const req = await fetch("./content/actualites/news.json?_=" + Date.now());
+    const req = await fetch(window.location.origin + window.location.pathname.replace(/index\\.html$/, "") + "content/actualites/news.json?_=" + Date.now());
     const jsonData = await req.json();
     const newsList = jsonData.items;
     newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
