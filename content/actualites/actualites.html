@@ -33,10 +33,11 @@
   </header>
 
   <!-- CONTENU -->
-  <main class="news-page">
-    <h1>Nos Actualités</h1>
-    <div class="news-list" id="news-list"></div>
-  </main>
+	<main class="news-page">
+	  <h1>Nos Actualités</h1>
+	  <div class="news-list" id="news-list"></div>
+	</main>
+
 
   <!-- FOOTER -->
   <footer>
@@ -60,7 +61,7 @@ async function loadAllNews() {
   try {
     const req = await fetch("news.json?_=" + Date.now());
     const jsonData = await req.json();
-    const newsList = jsonData.items;
+    const newsList = jsonData.items || [];
     newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     const container = document.getElementById("news-list");
@@ -69,21 +70,20 @@ async function loadAllNews() {
     newsList.forEach((news, index) => {
       const id = slugify(news.title);
       const block = document.createElement("div");
-      block.className = "actu-block" + (index % 2 ? " reverse" : "");
+      block.className = "actu-block";
       block.id = id;
       block.innerHTML = `
         <img src="../../${news.image}" alt="${news.title}">
         <div class="actu-content">
           <h2>${news.title}</h2>
-          <p><em>${new Date(news.date).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })}</em></p>
-          <p>${news.body || news.excerpt}</p>
+          <em>${new Date(news.date).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })}</em>
+          <p>${news.body || news.excerpt || ""}</p>
         </div>
       `;
-      if (index % 2 === 1) block.querySelector("img").style.order = "2";
       container.appendChild(block);
     });
 
-    // Gestion ancrage (depuis index.html)
+    // Gestion de l'ancrage (hash)
     const hash = decodeURIComponent(window.location.hash);
     if (hash) {
       const target = document.querySelector(hash);
@@ -103,6 +103,7 @@ async function loadAllNews() {
 }
 document.addEventListener("DOMContentLoaded", loadAllNews);
 </script>
+
 
 </body>
 </html>
