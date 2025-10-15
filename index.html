@@ -36,7 +36,6 @@
   <section class="hero">
     <div class="hero-content">
       <h1>ASBL Awal Novembre</h1>
-      <p>Bâtir une communauté algérienne unie, solidaire et épanouie dans le Hainaut.</p>
     </div>
   </section>
 
@@ -89,34 +88,54 @@
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
-  <script>
-  async function loadNews(limit = 3) {
-    try {
-      const req = await fetch("content/actualites/news.json?_=" + Date.now());
-      const jsonData = await req.json();
-      const newsList = jsonData.items;
-      newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
-      const latest = newsList.slice(0, limit);
-      const container = document.getElementById("news-cards");
-      container.innerHTML = "";
+<script>
+function slugify(text) {
+  return text.toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9\s-]/g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
 
-      latest.forEach(news => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${news.image}" alt="${news.title}">
-          <h3>${news.title}</h3>
-          <p>${news.excerpt}</p>
-          <a href="content/actualites/actualites.html" class="btn">Lire</a>
-        `;
-        container.appendChild(card);
-      });
-    } catch (error) {
-      console.error("Erreur lors du chargement des actualités :", error);
-    }
+async function loadNews(limit = 3) {
+  try {
+    const req = await fetch("content/actualites/news.json?_=" + Date.now());
+    const jsonData = await req.json();
+    const newsList = jsonData.items;
+    newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const latest = newsList.slice(0, limit);
+
+    const container = document.getElementById("news-cards");
+    container.innerHTML = "";
+
+    latest.forEach(news => {
+      const id = slugify(news.title);
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${news.image}" alt="${news.title}" style="height:180px;object-fit:cover;border-radius:10px 10px 0 0;">
+        <h3>${news.title}</h3>
+        <p>${news.excerpt || ""}</p>
+        <a href="content/actualites/actualites.html#${id}" class="btn">Lire</a>
+      `;
+      container.appendChild(card);
+    });
+
+    // Uniformiser la taille des cartes
+    const cards = document.querySelectorAll("#news-cards .card");
+    let maxHeight = 0;
+    cards.forEach(c => maxHeight = Math.max(maxHeight, c.offsetHeight));
+    cards.forEach(c => c.style.height = maxHeight + "px");
+
+  } catch (error) {
+    console.error("Erreur lors du chargement des actualités :", error);
   }
-  loadNews();
-  </script>
+}
+document.addEventListener("DOMContentLoaded", loadNews);
+</script>
+
 
   <script src="assets/js/script.js"></script>
 </body>
