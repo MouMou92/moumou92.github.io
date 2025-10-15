@@ -280,9 +280,13 @@ footer a:hover {
 
 .actu-block img {
   width: 50%;
-  height: 100%;
-  object-fit: scale-down;
+  height: auto;
+  max-height: 600px;
+  object-fit: contain;
+  background: #000; /* fond neutre si l'image est plus petite */
+  display: block;
 }
+
 
 .actu-content {
   width: 50%;
