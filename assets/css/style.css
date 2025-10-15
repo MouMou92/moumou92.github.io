@@ -486,3 +486,96 @@ body.gallery-page {
     font-size: 32px;
   }
 }
+
+/* === AMÉLIORATION DES CARTES D’ACTUALITÉS SUR L’ACCUEIL === */
+.news {
+  background: #fff;
+  text-align: center;
+}
+
+.news .cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+  min-height: 80px;
+  margin-bottom: 40px; /* ajoute de l’espace avant le bouton "Voir toutes les actualités" */
+}
+
+.news .card {
+  flex: 1 1 300px;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+  padding: 0;
+  height: auto;
+  text-align: center;
+}
+
+.news .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+.news .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.news .card h3 {
+  margin: 16px 16px 8px;
+  color: #34495e;
+  font-size: 18px;
+  text-align: center;
+}
+
+.news .card p {
+  display: none; /* supprime l’espace du texte vide */
+}
+
+.news .card .btn {
+  margin: 8px auto 20px;
+  padding: 10px 30px; /* bouton plus large */
+  background: #d4af37;
+  color: #000;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.news .card .btn:hover {
+  background: #b9962d;
+}
+
+/* corrige le bouton central sous les cartes */
+.news .center {
+  margin-top: 10px;
+}
+
+/* bouton global "voir toutes les actualités" */
+.news .center .btn {
+  padding: 12px 36px;
+}
+
+/* === VERSION MOBILE === */
+@media (max-width: 768px) {
+  .news .card {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .news .card .btn {
+    display: inline-block; /* force l’affichage du bouton sur mobile */
+    margin: 10px auto 16px;
+  }
+}
